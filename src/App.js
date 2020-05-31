@@ -1,25 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import GetTableList from './Componets/GetTableList';
 import './App.css';
+import GetChampionDetails from './Componets/GetChampionDetails';
+import { Route, Switch } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
 
-function App() {
+const App = (props) => {
+
+  const Main = (props) => {
+    return (
+      <div className="row">
+        <div className="col">
+          <GetTableList />
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <div className="body">
+        <div className="container-react">
+          <span className="react-logo">
+            <span className="nucleo"></span>
+          </span>
+        </div>
+        <Switch>
+          <Route path="/" component={Main} exact={true} />
+          <Route path="/champion/:version/:name" component={GetChampionDetails} exact={true} />
+        </Switch>
+      </div>
+    </Container>
   );
 }
 
